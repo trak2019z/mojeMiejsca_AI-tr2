@@ -16,15 +16,26 @@ class ContactForm extends Model
     public $body;
     public $verifyCode;
 
+    const SCENARIO_LOGGEDUSER = 'Kontakt dla użytkowników zalogowanych'; 
+    const SCENARIO_GUESTUSER="Kontakt dla użytkowników niezalgowanych";
 
     /**
      * @return array the validation rules.
      */
+    
+    public function scenarios()
+    {
+        return [
+            self::SCENARIO_LOGGEDUSER => ['name', 'email','subject','body'],
+            self::SCENARIO_GUESTUSER => ['name', 'email','subject','body','verifyCOde'],
+        ];
+    }
+    
     public function rules()
     {
         return [
             // name, email, subject and body are required
-            [['name', 'email', 'subject', 'body'], 'required'],
+            [['name', 'email', 'subject', 'body'], 'required','message'=>'Pole nie może być puste.'],
             // email has to be a valid email address
             ['email', 'email'],
             // verifyCode needs to be entered correctly
@@ -38,7 +49,7 @@ class ContactForm extends Model
     public function attributeLabels()
     {
         return [
-            'verifyCode' => 'Verification Code',
+            'verifyCode' => 'Kod weryfikacyjny',
         ];
     }
 
@@ -52,8 +63,7 @@ class ContactForm extends Model
         if ($this->validate()) {
             Yii::$app->mailer->compose()
                 ->setTo($email)
-                ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
-                ->setReplyTo([$this->email => $this->name])
+                ->setFrom([$this->email => $this->name])
                 ->setSubject($this->subject)
                 ->setTextBody($this->body)
                 ->send();
