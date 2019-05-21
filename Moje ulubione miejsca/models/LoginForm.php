@@ -4,7 +4,8 @@ namespace app\models;
 
 use Yii;
 use yii\base\Model;
-
+use DateTime;
+use DateTimeZone;
 /**
  * LoginForm is the model behind the login form.
  *
@@ -16,7 +17,8 @@ class LoginForm extends Model
     public $username;
     public $password;
     public $rememberMe = true;
-
+    public $ban;
+    
     private $_user = false;
 
 
@@ -27,9 +29,9 @@ class LoginForm extends Model
     {
         return [
             // username and password are both required
-            [['username', 'password'], 'required'],
+            [['username', 'password'], 'required','message'=>'Pole nie może być puste'],
             // rememberMe must be a boolean value
-            ['rememberMe', 'boolean'],
+            [['rememberMe'], 'boolean'],
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
         ];
@@ -48,7 +50,7 @@ class LoginForm extends Model
             $user = $this->getUser();
 
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+                $this->addError($attribute, 'Podano złą nazwę użytkownika lub hasło.');
             }
         }
     }
@@ -59,7 +61,7 @@ class LoginForm extends Model
      */
     public function login()
     {
-        if ($this->validate()) {
+        if ($this->validate() && $this->isNotBanned()) {
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
         }
         return false;
@@ -78,4 +80,33 @@ class LoginForm extends Model
 
         return $this->_user;
     }
+    
+    public function lastLogin($userid) {
+        
+        $tz = 'Europe/Warsaw';
+        $timestamp = time();
+        $dt = new DateTime("now", new DateTimeZone($tz)); 
+        $dt->setTimestamp($timestamp);
+        
+        $user= Uzytkownik::findIdentity($userid);
+        $user->scenario= Uzytkownik::SCENARIO_LASTLOGINUPDATE;
+        $user->last_login=$dt->format('Y-m-d H:i:s');
+        $user->save();
+    }
+    
+    
+    
+    public function isNotBanned() {
+            $user = Uzytkownik::findByUsername($this->username);
+            if(!is_null($user) && $user->ban==false) {
+                return true;
+            }
+            else {
+                $this->addError('username', 'Konto nie zostało aktywowane. Sprawdź pocztę e-mail.');
+                return false;
+            }
+
+    }
+    
+    
 }
