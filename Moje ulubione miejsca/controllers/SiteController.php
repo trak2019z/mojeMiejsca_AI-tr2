@@ -20,13 +20,18 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout'],
+                'only' => ['logout','login','about','contact'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout','about','contact'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
+                    [
+                        'actions' => ['login','contact'],
+                        'allow' => true,
+                        'roles' => ['?'],
+                    ]
                 ],
             ],
             'verbs' => [
@@ -59,10 +64,10 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
-    {
-        return $this->render('index');
-    }
+//    public function actionIndex()
+//    {
+//        return $this->render('index');
+//    }
 
     /**
      * Login action.
@@ -72,12 +77,13 @@ class SiteController extends Controller
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+            return $this->redirect(['mapa/index']);
         }
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            $model->lastLogin(Yii::$app->user->identity->user_id);
+            return $this->redirect(['mapa/index']);
         }
 
         $model->password = '';
@@ -95,7 +101,7 @@ class SiteController extends Controller
     {
         Yii::$app->user->logout();
 
-        return $this->goHome();
+        return $this->redirect(['login']);
     }
 
     /**
@@ -106,6 +112,12 @@ class SiteController extends Controller
     public function actionContact()
     {
         $model = new ContactForm();
+        if(Yii::$app->user->isGuest) {
+            $model->scenario= ContactForm::SCENARIO_GUESTUSER;
+        }
+        else {
+            $model->scenario= ContactForm::SCENARIO_LOGGEDUSER; 
+        }
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');
 
