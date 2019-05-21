@@ -1,9 +1,8 @@
 <?php
-
+ 
 namespace app\models;
 
-use yii\db\ActiveRecord;
-use yii\web\IdentityInterface;
+//use Yii;
 
 /**
  * This is the model class for table "uzytkownik".
@@ -17,11 +16,28 @@ use yii\web\IdentityInterface;
  * @property bool $ban
  * @property string $regcode
  */
-class Uzytkownik extends ActiveRecord implements IdentityInterface
+class Uzytkownik extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
     /**
      * {@inheritdoc}
      */
+    public $verifyCode, $password2, $email2;
+    
+    const SCENARIO_UPDATE = 'Update'; 
+    const SCENARIO_LASTLOGINUPDATE="Last login date update";
+    const SCENARIO_REGISTRATION="User registrarion";
+    
+    public function scenarios()
+    {
+        return [
+            self::SCENARIO_UPDATE => ['email', 'password','user_id'],
+            self::SCENARIO_LASTLOGINUPDATE => ['last_login','user_id'],
+            self::SCENARIO_REGISTRATION => ['username', 'password', 'email', 'created_on', 
+                                        'ban','email2','password2','verifyCode','regcode']
+        ];
+    }
+    
+    
     public static function tableName()
     {
         return 'uzytkownik';
