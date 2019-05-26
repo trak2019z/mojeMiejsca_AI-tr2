@@ -27,7 +27,7 @@ class ContactForm extends Model
     {
         return [
             self::SCENARIO_LOGGEDUSER => ['name', 'email','subject','body'],
-            self::SCENARIO_GUESTUSER => ['name', 'email','subject','body','verifyCOde'],
+            self::SCENARIO_GUESTUSER => ['name', 'email','subject','body','verifyCode'],
         ];
     }
     
