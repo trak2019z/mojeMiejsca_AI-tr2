@@ -39,7 +39,7 @@ class ContactForm extends Model
             // email has to be a valid email address
             ['email', 'email'],
             // verifyCode needs to be entered correctly
-            ['verifyCode', 'captcha'],
+            ['verifyCode', 'captcha','message'=>'Podaj prawidłowy kod captcha.']
         ];
     }
 
@@ -63,9 +63,9 @@ class ContactForm extends Model
         if ($this->validate()) {
             Yii::$app->mailer->compose()
                 ->setTo($email)
-                ->setFrom([$this->email => $this->name])
+                ->setFrom($this->email)
                 ->setSubject($this->subject)
-                ->setTextBody($this->body)
+                ->setTextBody("Wiadomość od: ".$this->name.", ".$this->email."\n\n".$this->body)
                 ->send();
 
             return true;
