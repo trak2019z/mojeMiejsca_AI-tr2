@@ -1,10 +1,11 @@
 <?php
-
+use yii\helpers\Html;
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model app\models\Uzytkownik */
 
 $this->title = 'Tworzenie konta';
-$this->params['breadcrumbs'][] = $this->title;
+//$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="rejestracja-uzytkownika">
 
@@ -22,5 +23,10 @@ $this->params['breadcrumbs'][] = $this->title;
         ]);
     }
     ?>
+    
+    <div class="panel col-lg-6 col-lg-offset-4">
+        <?= Html::tag('p','Jesteś zarejestrowany?',['class'=>'col-lg-5']) ?>
+        <?= Html::a('Zaloguj się', Url::to(['site/login']),['class'=>'col-lg-3']) ?>
+    </div>
 
 </div>
