@@ -40,7 +40,9 @@ AppAsset::register($this);
         echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Mapa', 'url' => ['/site/index']],
+            ['label' => 'Mapa', 'url' => ['/mapa/index']],
+            ['label' => 'Twoje miejsca', 'url' => ['/places/index']],
+
             ['label' => 'Twój profil', 'url' => ['/uzytkownik/view', 'id'=>Yii::$app->user->identity->user_id]],
             ['label' => 'Kontakt', 'url' => ['/site/contact']],
             '<li>'
