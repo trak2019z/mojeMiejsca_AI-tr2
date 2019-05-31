@@ -113,3 +113,11 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+.mapPanel {
+    margin: 50px 0 0 0;
+}
+.mapBottomPadding {
+    padding-bottom: 0 !important;
+    margin-bottom: 0px !important;
+    min-height: auto !important;
+}
