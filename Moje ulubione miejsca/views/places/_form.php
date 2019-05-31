@@ -6,7 +6,7 @@ use Yii\web\View;
 
 $this->registerCssFile('@web/css/mapa.css');
 $this->registerJsFIle('@web/js/screen-height-check-forCreateMap.js');
-$this->registerJsFile('https://maps.googleapis.com/maps/api/js?key=##&callback=initMap',['position' => View::POS_HEAD, 'async'=>false, 'defer'=>true]);
+$this->registerJsFile('https://maps.googleapis.com/maps/api/js?key=AIzaSyDqVFNzzRZxwJ9EALZa04PEH2hAnATXkyg&callback=initMap',['position' => View::POS_HEAD, 'async'=>false, 'defer'=>true]);
 $this->registerJsFile('@web/js/createMap.js');
 /* @var $this yii\web\View */
 /* @var $model app\models\Places */
