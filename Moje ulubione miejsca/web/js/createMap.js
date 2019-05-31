@@ -43,10 +43,12 @@ function initMap() {
         center: {lat: ltd, lng: lng},
         zoom: zm
     });
+    
+    var marker;
 
     if(MAPDEFINED) {
         var latLng = {lat: ltd, lng: lng};
-        var marker = new google.maps.Marker({
+        marker = new google.maps.Marker({
           position: latLng,
           map: map,
           title: 'Hello World!'
@@ -61,7 +63,7 @@ function initMap() {
         if(marker) {
             marker.setMap(null);
         }
-        var marker = new google.maps.Marker({
+        marker = new google.maps.Marker({
           position: event.latLng,
           map: map,
           title: 'Hello World!'
