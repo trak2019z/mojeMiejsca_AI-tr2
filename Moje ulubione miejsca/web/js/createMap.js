@@ -37,14 +37,12 @@ if (!document.getElementsByName('Places[latitude]')[0].value) {
 
 function initMap() {
     
-    
+    var marker;
     
     map = new google.maps.Map(document.getElementById('createMap'), {
         center: {lat: ltd, lng: lng},
         zoom: zm
     });
-    
-    var marker;
 
     if(MAPDEFINED) {
         var latLng = {lat: ltd, lng: lng};
