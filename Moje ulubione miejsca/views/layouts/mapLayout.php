@@ -59,6 +59,7 @@ AppAsset::register($this);
         echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
+            ['label' => 'Mapa', 'url' => ['/mapa/index']],
             ['label' => 'Kontakt', 'url' => ['/site/contact']],
             ['label' => 'Rejestracja & Logowanie', 'url' => ['/site/login']]            
         ],
