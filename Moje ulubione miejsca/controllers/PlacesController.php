@@ -24,10 +24,10 @@ class PlacesController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index','create','update','delete','json'],
+                'only' => ['index','create','update','delete'],
                 'rules' => [
                     [
-                        'actions' => ['index','create','update','delete','json'],
+                        'actions' => ['index','create','update','delete'],
                         'allow' => true,
                         'roles' => ['@'],
                     ]
@@ -124,13 +124,72 @@ class PlacesController extends Controller
     
     public function actionJson()
     {
-        $searchModel = new PlacesSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if(!Yii::$app->user->isGuest) {
+                    
+            $searchModel = new PlacesSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            $dataProvider->query->where(['ownerid'=>Yii::$app->user->id]);
+            $dataProvider->query->orWhere(['public'=>'true']);
+            
+            $geojson = array(
+                'type'      => 'FeatureCollection',
+                'features'  => array()
+             );
 
-        return $this->render('json', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+             foreach($dataProvider->models as $model) {
+                 $feature = array(
+    //                 'id' => $model['id'],
+                     'type' => 'Feature', 
+                     'geometry' => array(
+                         'type' => 'Point',
+                         'coordinates' => array($model['longitude'], $model['latitude'])
+                     ),
+                     'properties' => array(
+                         'ownerid' => $model['ownerid'],
+                         'grade' => $model['grade'],
+                         'public' => $model['public'],
+                         'text' => $model['text'],
+                         'link' => $model['link'],
+                         'name' => $model['name']
+
+                         )
+                     );
+                 array_push($geojson['features'], $feature);
+             }
+        } else {
+             $searchModel = new PlacesSearch();
+             
+             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+             $dataProvider->query->where('public=true');
+             
+             $geojson = array(
+                'type'      => 'FeatureCollection',
+                'features'  => array()
+             );
+
+             foreach($dataProvider->models as $model) {
+                 $feature = array(
+    //                 'id' => $model['id'],
+                     'type' => 'Feature', 
+                     'geometry' => array(
+                         'type' => 'Point',
+                         'coordinates' => array($model['longitude'], $model['latitude'])
+                     ),
+                     'properties' => array(
+                         'ownerid' => $model['ownerid'],
+                         'grade' => $model['grade'],
+                         'public' => $model['public'],
+                         'text' => $model['text'],
+                         'link' => $model['link'],
+                         'name' => $model['name']
+
+                         )
+                     );
+                 array_push($geojson['features'], $feature);
+             }
+        }
+                    
+             $this->renderJSON($geojson);
     }
 
     /**
@@ -147,5 +206,10 @@ class PlacesController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+    
+    protected function renderJSON($data) {
+        header('Content-Type: application/json');
+        echo 'eqfeed_callback('.json_encode($data,JSON_PRETTY_PRINT).');';
     }
 }
