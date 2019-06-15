@@ -9,7 +9,6 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
-$this->title="Twoje ulubione miejsca" ;
 AppAsset::register($this);
 
 ?>
@@ -60,6 +59,7 @@ AppAsset::register($this);
         echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
+            ['label' => 'Mapa', 'url' => ['/mapa/index']],
             ['label' => 'Kontakt', 'url' => ['/site/contact']],
             ['label' => 'Rejestracja & Logowanie', 'url' => ['/site/login']]            
         ],
