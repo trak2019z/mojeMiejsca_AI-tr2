@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+var script = document.createElement('script');
+script.src = 'http://91.188.125.149/mojemiejsca/index.php?r=places%2Fjson';
+document.getElementsByTagName('head')[0].appendChild(script);
 
 var map;
 function initMap() {
@@ -11,28 +13,85 @@ function initMap() {
         center: {lat: 49.9, lng: 22.3},
         zoom: 8
     });
-//
-//    map.addListener("click", function (event) {
-//        var latitude = event.latLng.lat();
-//        var longitude = event.latLng.lng();
-//        console.log(latitude + ', ' + longitude);
-//
-//        radius = new google.maps.Circle({map: map,
-//            radius: 100,
-//            center: event.latLng,
-//            fillColor: '#777',
-//            fillOpacity: 0.1,
-//            strokeColor: '#AA0000',
-//            strokeOpacity: 0.8,
-//            strokeWeight: 2,
-//            draggable: true, // Dragable
-//            editable: true      // Resizable
-//        });
-//
-//        // Center of map
-//        map.panTo(new google.maps.LatLng(latitude, longitude));
-////        location.href='http://91.188.125.149/index.php?r=places%2Fcreate';
-//    }); //end addListener
+
+
+
+
+    window.eqfeed_callback = function (results) {
+
+        
+
+        for (var i = 0; i < results.features.length; i++) {
+            var coords = results.features[i].geometry.coordinates;
+            var stars;
+            switch (results.features[i].properties.grade) {
+                default:
+                    stars="<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>";
+                    break;
+                case 2:
+                    stars="<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>";
+                    break;
+                case 3:
+                    stars="<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>";
+                    break;
+                case 4:
+                    stars="<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>";
+                    break;
+                case 5:
+                    stars="<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>";
+                    break;
+                case 6:
+                    stars="<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>";
+                    break;
+            }
+            if(results.features[i].properties.link==="") {
+               var contentString = "<h2>"+results.features[i].properties.name+'</h2>'
+                +"<p>"+results.features[i].properties.text+"</p>"
+                +"<p>Ocena: "+stars+"</p>"; 
+            } else {
+                var contentString = "<h2>"+results.features[i].properties.name+'</h2>'
+                +"<p>"+results.features[i].properties.text+"</p>"
+                +"<p>Ocena: "+stars+"</p>"
+                +"<p>Dodatkowe informacje: <a href='"+results.features[i].properties.link+"'>Link do strony</a></p>";
+            }
+            
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+            var latLng = new google.maps.LatLng(coords[1], coords[0]);
+            var marker = new google.maps.Marker({
+                position: latLng,
+                map: map
+            });
+            google.maps.event.addListener(marker, 'click', (function (marker, contentString, infowindow) {
+                return function () {
+                    infowindow.setContent(contentString);
+                    infowindow.open(map, marker);
+                    windows.push(infowindow)
+                    google.maps.event.addListener(map, 'click', function () {
+                        infowindow.close();
+                    });
+                };
+            })(marker, contentString, infowindow));
+
+        }
+    };
+
 
 }
 
