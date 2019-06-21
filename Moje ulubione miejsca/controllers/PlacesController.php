@@ -50,6 +50,9 @@ class PlacesController extends Controller
     {
         $searchModel = new PlacesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
+        $dataProvider->query->where(['ownerid'=>Yii::$app->user->id]);
+        $dataProvider->query->orWhere(['public'=>'true']);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
