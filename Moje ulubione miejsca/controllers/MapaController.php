@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-use yii\filters\AccessControl;
+//use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 
