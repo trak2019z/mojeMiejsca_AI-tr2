@@ -7,6 +7,7 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'name'=>'Twoje ulubione miejsce',
     'defaultRoute'=>'mapa/index',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
@@ -73,7 +74,7 @@ if (YII_ENV_DEV) {
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        'allowedIPs' => ['127.0.0.1', '::1','193.19.165.211'],
+        'allowedIPs' => ['127.0.0.1', '::1','91.232.27.218'],
     ];
 }
 
