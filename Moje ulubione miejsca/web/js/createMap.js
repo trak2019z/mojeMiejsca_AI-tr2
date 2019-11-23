@@ -85,7 +85,7 @@ function initMap() {
         document.getElementsByName('Places[longitude]')[0].value=longitude;
         // Center of map
         map.panTo(new google.maps.LatLng(latitude, longitude));
-//        location.href='http://91.188.125.149/index.php?r=places%2Fcreate';
+//        location.href='http://77.55.220.183/index.php?r=places%2Fcreate';
     }); //end addListener
 
 }
