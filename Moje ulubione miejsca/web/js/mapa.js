@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 var script = document.createElement('script');
-script.src = 'http://91.188.125.149/mojemiejsca/index.php?r=places%2Fjson';
+script.src = 'http://77.55.220.183/index.php?r=places%2Fjson';
 document.getElementsByTagName('head')[0].appendChild(script);
 
 var map;
@@ -26,37 +26,37 @@ function initMap() {
             var stars;
             switch (results.features[i].properties.grade) {
                 default:
-                    stars="<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>";
+                    stars="<img src='http://77.55.220.183/js/baseline-star_border-24px_yellow_1.png'/>";
                     break;
                 case 2:
-                    stars="<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
-                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>";
+                    stars="<img src='http://77.55.220.183/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://77.55.220.183/js/baseline-star_border-24px_yellow_1.png'/>";
                     break;
                 case 3:
-                    stars="<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
-                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
-                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>";
+                    stars="<img src='http://77.55.220.183/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://77.55.220.183/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://77.55.220.183/js/baseline-star_border-24px_yellow_1.png'/>";
                     break;
                 case 4:
-                    stars="<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
-                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
-                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
-                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>";
+                    stars="<img src='http://77.55.220.183/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://77.55.220.183/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://77.55.220.183/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://77.55.220.183/js/baseline-star_border-24px_yellow_1.png'/>";
                     break;
                 case 5:
-                    stars="<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
-                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
-                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
-                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
-                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>";
+                    stars="<img src='http://77.55.220.183/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://77.55.220.183/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://77.55.220.183/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://77.55.220.183/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://77.55.220.183/js/baseline-star_border-24px_yellow_1.png'/>";
                     break;
                 case 6:
-                    stars="<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
-                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
-                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
-                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
-                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>"
-                    +"<img src='http://91.188.125.149/mojemiejsca/js/baseline-star_border-24px_yellow_1.png'/>";
+                    stars="<img src='http://77.55.220.183/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://77.55.220.183/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://77.55.220.183/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://77.55.220.183/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://77.55.220.183/js/baseline-star_border-24px_yellow_1.png'/>"
+                    +"<img src='http://77.55.220.183/js/baseline-star_border-24px_yellow_1.png'/>";
                     break;
             }
             if(results.features[i].properties.link==="") {
