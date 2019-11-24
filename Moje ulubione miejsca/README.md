@@ -3,6 +3,8 @@
     <h2 align="center">na potrzeby aplikacji "Moje ulubione miejsca"</h2>
 </p>
 
+1. Tworzymy katalog a w nim plik Dockerfile z treścią jak niżej:
+
 ```FROM centos:7
 
 # Aktualizacja systemu kontenera i instalacja Apache2
@@ -46,3 +48,11 @@ EXPOSE 80
 # Start Apache
 CMD ["/usr/sbin/httpd","-D","FOREGROUND"]
 ```
+
+2. Sprawdzamy jaki jest ID zbudowanego kontenera:
+```docker images```
+3. Następnie uruchamiamy kontener poleceniem:
+```docker run -td -p 80:80 <ID Kontenera>
+```
+4. Sprawdzamy witrynę pod adresem:
+```http://77.55.220.183/```
