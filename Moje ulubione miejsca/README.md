@@ -49,6 +49,8 @@ EXPOSE 80
 CMD ["/usr/sbin/httpd","-D","FOREGROUND"]
 ```
 
+2. Wychodzimy wyżej z katalogu a następnie budujemy obraz kontenera pleceniem:
+```docker build <nazwa katalogu>```
 2. Sprawdzamy jaki jest ID zbudowanego kontenera:
 ```docker images```
 3. Następnie uruchamiamy kontener poleceniem:
