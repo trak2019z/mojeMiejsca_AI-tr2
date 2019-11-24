@@ -55,5 +55,5 @@ CMD ["/usr/sbin/httpd","-D","FOREGROUND"]
 ```docker images```
 3. Następnie uruchamiamy kontener poleceniem:
 ```docker run -td -p 80:80 <ID Kontenera>```
-4. Sprawdzamy witrynę pod adresem:
-```http://77.55.220.183/```
+4. Otwieramy port 80 na firewallu gdzie uruchomiliśmy kontener.
+5. Sprawdzamy przeglądarką internetową stronę na porcie 80.
