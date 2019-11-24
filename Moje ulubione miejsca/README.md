@@ -1,5 +1,4 @@
 <p align="center">
-
     <h1 align="center">Kod źródłowy dockerfile konterena </h1>
     <h2 align="center">na potrzeby aplikacji "Moje ulubione miejsca"</h2>
 </p>
