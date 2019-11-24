@@ -5,7 +5,8 @@
 
 1. Tworzymy katalog a w nim plik Dockerfile z treścią jak niżej:
 
-```FROM centos:7
+```
+FROM centos:7
 
 # Aktualizacja systemu kontenera i instalacja Apache2
 RUN yum -y update
