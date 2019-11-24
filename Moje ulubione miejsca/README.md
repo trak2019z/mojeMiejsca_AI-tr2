@@ -1,9 +1,7 @@
 <p align="center">
-    <a href="https://github.com/yiisoft" target="_blank">
-        <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
-    </a>
-    <h1 align="center">Yii 2 Basic Project Template</h1>
-    <br>
+
+    <h1 align="center">Kod źródłowy dockerfile konterena </h1>
+    <h2 align="center">na potrzeby aplikacji "Moje ulubione miejsca"</h2>
 </p>
 
 Yii 2 Basic Project Template is a skeleton [Yii 2](http://www.yiiframework.com/) application best for
