@@ -58,3 +58,11 @@ CMD ["/usr/sbin/httpd","-D","FOREGROUND"]
 ```docker run -td -p 80:80 <ID Kontenera>```
 4. Otwieramy port 80 na firewallu gdzie uruchomiliśmy kontener.
 5. Sprawdzamy przeglądarką internetową stronę na porcie 80.
+6. Następnie ściągamy obraz PostgreSQL z dockerhuba poleceniem w terminalu:
+``` docker pull postgres:latest```
+7. Uruchamiamy następnie kontener bazy danych poleceniem:
+``` docker run -d -p 5432:5432 postgres```
+8. Następnie wchodzimy do bazy danych poleceniem z terminala:
+``` psql -h localhost -p 5432 -U postgres```
+i wykonujemy zmiany bazy danych ujęte w dokumentacji wymienionej pod adresem:
+<a href="https://docs.google.com/document/d/1MPXV-4yEcgtd6kaKuC3Gz5pMeHwQlx8I7ytoYtJ2Cd0/edit">Dokumentacja Moich ulubionych miejsc</a> w rozdziale pt. Baza danych, strona 8.
