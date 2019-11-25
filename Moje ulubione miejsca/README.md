@@ -99,3 +99,4 @@ docker network connect link yii
 2. Nadajemy mu prawa do wykonywania poleceniem z terminalu: ```chmod +x init.sh```
 3. Uruchamiamy skrypt poleceniem ```sh init.sh```. Może być niezbędne uruchomienie skryptu z podwyższonymi uprawnieniami ```sudo sh init.sh```
 4. Skrypt wykona za nas całą pracę. Pozostaje tylko otworzyć na zaporze ogniowej port 80, otworzyć przeglądarkę i gotowe.
+5. Jedynym mankamentem jest brak prawidłowego wyświetlania mapy, ponieważ w moim panelu Google Cloud Platform włączyłem ograniczenie używania API Google Places i Google Maps do strony projektu.
