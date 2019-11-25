@@ -1,6 +1,6 @@
 <p align="center">
     <h1 align="center">Skryptowe uruchamianie kontenerów</h1>
-    <h2 align="center">i aktualizacja baz i aplikacji "Moje ulubione miejsca"</h2>
+    <h2 align="center">i aktualizacja baz oraz aplikacji "Moje ulubione miejsca"</h2>
 </p>
 
 1. Tworzymy skrypt init.sh o zawartości jak poniżej:
