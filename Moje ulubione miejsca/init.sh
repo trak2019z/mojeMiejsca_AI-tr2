@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # Utworzenie i wejście do katalogu projektu
+rm -Rf yiiApp
 mkdir yiiApp
 cd yiiApp
 
