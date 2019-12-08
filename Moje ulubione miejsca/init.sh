@@ -60,11 +60,11 @@ docker build -t yiiapp:latest .
 rm Dockerfile
 
 # Uruchomienie kontenera
-docker run --name yii -d -p 80:80 yiiapp:latest
+docker run -d -p 80:80 yiiapp:latest
 
 # Ściągnięcie kontenera bazy danych postgres i jego uruchomienie
 docker pull postgres:latest
-docker run --name postgres -d -p 5432:5432 postgres:latest
+docker run -d -p 5432:5432 postgres:latest
 
 sleep 5
 
